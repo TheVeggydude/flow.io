@@ -1,4 +1,4 @@
-# Flow.io (group 24)
+# Flow.io project
 This project simulates a real-world water management application. A script generates data simulating a pipeline
 infrastructure pumping up water and depositing it at dedicated sink points. On top of this we build an architecture that
 is able to robustly handle the potentially large amount of data from all the sensors. The end product is a Single Page
