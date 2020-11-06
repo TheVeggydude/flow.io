@@ -116,6 +116,7 @@ services:
       - kafka_brokers=kafka_0:29091
       - kafka_topic=simulation_updates
       - cassandra_instances=cassandra-cluster;cassandra-cluster;cassandra-cluster
+      - cassandra_datacenter=datacenter1
     ports:
       - 4004:4004
     networks:
@@ -168,6 +169,8 @@ services:
       - port=4103
       - mongoose_uri=mongodb://mongo_1:27017/flowio
       - startupTimeout=15000
+      - cassandra_instances=cassandra-cluster;cassandra-cluster;cassandra-cluster
+      - cassandra_datacenter=datacenter1
     ports:
       - '4103:4103'
     depends_on:
@@ -186,6 +189,8 @@ services:
       - port=4203
       - mongoose_uri=mongodb://mongo_1:27017/flowio
       - startupTimeout=15000
+      - cassandra_instances=cassandra-cluster;cassandra-cluster;cassandra-cluster
+      - cassandra_datacenter=datacenter1
     ports:
       - '4203:4203'
     depends_on:
