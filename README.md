@@ -144,17 +144,6 @@ the latest data coming from a websocket that points to the location of `websocke
 The Vue.js frontend containers are load balanced by the `vue_frontend_loadbalancer` container using the same method as
 the backend uses.
 
-
-
-## React.js frontend (`/frontend`)
-The folder contains frontend for a single-page-application using React. The UI shows two columns, one containing two dynamic tables of latest ports and basins, another containing each element's(port/basin) details and a graph showing realtime load or production values.
-
-For initialisation of tables Axios API [axios](https://github.com/axios/axios) is used and for updating thereafter the standard WebSocket API [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket) is used.
-
-The global states have been maintained using React Redux [react-redux](https://react-redux.js.org/), by using a store to keep all the state values, and `reducer.js` changing the states after each action(or API call) is performed.
-
-For realtime chart rendering, the [apexcharts](https://apexcharts.com/) is used and updated after each click on the tables rows in ports/basins table. Finally, the frontend containerised using docker. 
-
 ## Running the application
 The packages `docker` and `docker-compose` need to be installed in order to run the entire architecture locally. All
 other requirements are taken care of by the images.
