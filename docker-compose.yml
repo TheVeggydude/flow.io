@@ -235,22 +235,3 @@ services:
       - websocket-backend
     logging:
       driver: "none"
-
-# React frontend
-  frontend:
-    container_name: frontend
-    networks:
-      - pipeline-network
-    build: frontend
-    environment:
-      - port=3000
-      - startupTimeout=35000
-    ports:
-      - '3000:3000'
-    command: npm start
-    depends_on:
-      - backend
-      - websocket-backend
-    stdin_open: true
-     # logging:
-     #   driver: "none"
