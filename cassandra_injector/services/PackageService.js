@@ -3,7 +3,7 @@ const cassandra = require('cassandra-driver');
 // All our cassandra nodes are in the same container at the moment
 let contactPoints = process.env.cassandra_instances.split(';');
 
-const localDatacenter = 'datacenter1';
+const localDatacenter = process.env.cassandra_datacenter;
 const loadBalancingPolicy = new cassandra.policies.loadBalancing.DCAwareRoundRobinPolicy(localDatacenter);
 
 const clientOptions = {
@@ -11,6 +11,7 @@ const clientOptions = {
       loadBalancing : loadBalancingPolicy
    },
    contactPoints: contactPoints,
+   queryOptions: { consistency: cassandra.types.consistencies.one },
    authProvider: new cassandra.auth.PlainTextAuthProvider('cassandra', 'cassandra'),
    keyspace:'pipeline'
 };

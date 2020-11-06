@@ -1,19 +1,14 @@
-FROM golang:1.13-alpine as builder
-RUN apk add --no-cache git
+# set base image (host OS)
+FROM python:3.6
 
-RUN mkdir /src
-WORKDIR /src
+# set the working directory in the container
+WORKDIR /code
 
-ENV GO111MODULE on
-COPY go.mod go.sum ./
-RUN go mod download
+# install dependencies
+RUN pip install confluent-kafka
 
+# copy the content of the local src directory to the working directory
 COPY . .
-RUN go build -o out/app ./examples/kafka_reader/reader.go
 
-# Run stage
-FROM alpine:latest
-
-COPY --from=builder /src/out/app .
-
-ENTRYPOINT ["/app"]
+# command to run on container start
+CMD [ "python", "./kafka_reader.py" ]

@@ -4,19 +4,19 @@ const router = express.Router();
 
 // Cassandra driver parameters
 const cassandra = require('cassandra-driver');
-const localDatacenter = 'datacenter1';
-const contactPoints = ['cassandra-cluster', 'cassandra-cluster', 'cassandra-cluster'];
+const localDatacenter = process.env.cassandra_datacenter;
+const contactPoints = process.env.cassandra_instances.split(';');
 const loadBalancingPolicy = new cassandra.policies.loadBalancing.DCAwareRoundRobinPolicy(localDatacenter);
 
 
 // Creating the param options for driver
 const clientOptions = {
-   policies : {
-      loadBalancing : loadBalancingPolicy
-   },
-   contactPoints: contactPoints,
-   authProvider: new cassandra.auth.PlainTextAuthProvider('cassandra', 'cassandra'),
-   keyspace:'pipeline'
+    policies : {
+        loadBalancing : loadBalancingPolicy
+    },
+    contactPoints: contactPoints,
+    authProvider: new cassandra.auth.PlainTextAuthProvider('cassandra', 'cassandra'),
+    keyspace:'pipeline'
 };
 
 
