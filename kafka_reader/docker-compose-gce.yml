@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+
+  # Simulation
+  simulation:
+    container_name: simulation
+    networks:
+      - pipeline-network
+    build: simulation
+    environment:
+      - kafka_brokers=kafka_0:29091,kafka_1:29092,kafka_2:29093
+      - kafka_topic=simulation_updates
+
+  # Kafka reader
+  kafka-reader:
+    container_name: kafka-reader
+    restart: always
+    build: kafka_reader
+    environment:
+      - TOPIC=pcb-simulation_updates
+      - GROUP_ID=kafkaReaders
+      - KAFKA_URL=kafka_1:29091
+    depends_on:
+      - simulation
