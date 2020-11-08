@@ -151,5 +151,6 @@ other requirements are taken care of by the images.
 With the prerequisites installed, simply run `docker-compose up --build` in the top-level directory. Wait until the
 `websocket_backend` announces that it is logging data, then you can find the web app locally on `http://localhost:8080`.
 
-When wanting to use replicated Kafka, use `docker-compose -f docker-compose_kafka_replicated.yml up --build`. The default
-compose file only has load balancing, in order to reduce the RAM/CPU footprint of the app.
+When wanting to use replicated technologies, use `docker-compose -f docker-compose_replicated.yml up --build`. The default
+compose file only has load balancing, in order to reduce the RAM/CPU footprint of the app. In the replicated compose file
+Kafka brokers and Cassandra nodes are replicated.
